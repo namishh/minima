@@ -26,6 +26,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add dist/mylib.min.css
+          git add dist/minima.min.css
           git diff --staged --quiet || git commit -m "chore: rebuild minified CSS [skip ci]"
           git push
