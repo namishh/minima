@@ -7,7 +7,9 @@
 
 !src/
 !src/*.css
+!src/*.js
 
 
 !dist
 !dist/*.css
+!dist/*.js
