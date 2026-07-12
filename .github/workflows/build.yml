@@ -20,7 +20,7 @@ jobs:
       - name: Minify CSS
         run: |
           mkdir -p dist
-          cleancss -o dist/mylib.min.css src/mylib.css
+          cleancss -o dist/minima.min.css src/minima.css
 
       - name: Commit minified file
         run: |
