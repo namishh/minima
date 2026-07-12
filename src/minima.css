@@ -1,15 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&display=swap");
+
 :root {
-    --color-bg: #ffffff;
+    --color-bg: #f0f0f0;
     --color-text: #1a1a1a;
+    --color-muted: #888888;
     --color-border: #e5e5e5;
     --color-surface: #f7f7f7;
+    --spacer: 10px;
 }
 
 [data-theme="dark"] {
     --color-bg: #0f0f0f;
     --color-text: #ededed;
+    --color-muted: #777;
     --color-border: #2a2a2a;
     --color-surface: #1a1a1a;
+    --spacer: 10px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,4 +25,90 @@
         --color-border: #2a2a2a;
         --color-surface: #1a1a1a;
     }
+}
+
+* {
+    font-family: "Geist Mono", monosapce;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 150%;
+    padding: 20px;
+}
+
+h1 {
+    font-weight: normal;
+    font-size: 24px;
+}
+
+h2 {
+    font-weight: normal;
+    font-size: 22px;
+}
+
+h3 {
+    font-weight: normal;
+    font-size: 20px;
+}
+
+h4 {
+    font-weight: normal;
+    font-size: 18px;
+}
+
+h5 {
+    font-weight: normal;
+    font-size: 16px;
+}
+
+h6 {
+    font-weight: normal;
+    font-size: 14px;
+}
+
+hr {
+    margin: 10px 0;
+    height: 1.5px;
+    background-color: var(--color-border);
+    border: none;
+}
+
+.text {
+    color: var(--color-text);
+    font-size: 14px;
+}
+
+.text-small {
+    color: var(--color-text);
+    font-size: 12px;
+}
+
+.text-muted {
+    color: var(--color-muted);
+    font-size: 14px;
+}
+
+.spacer-vertical {
+    margin: var(--spacer) 0;
+}
+
+.spacer-horizontal {
+    margin: 0 var(--spacer);
+}
+
+.blockquote {
+    padding: 10px;
+    background-color: var(--color-surface);
+    border-left: 1px solid var(--color-text);
+}
+
+pre {
+    background-color: var(--color-surface);
+    padding: 1px;
+    display: inline-block;
 }
