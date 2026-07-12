@@ -6,12 +6,24 @@
     --color-muted: #888888;
     --color-border: #e5e5e5;
     --color-surface: #f7f7f7;
+    --color-subtext: #222222;
+    --color-danger: #dc2626;
+    --color-danger-hover: #b91c1c;
+    --color-danger-bg: #fef2f2;
+    --color-danger-border: #fecaca;
+
     --spacer: 10px;
 }
 
 [data-theme="dark"] {
     --color-bg: #0f0f0f;
     --color-text: #ededed;
+    --color-subtext: #bbbbbb;
+
+    --color-danger: #f87171;
+    --color-danger-hover: #fca5a5;
+    --color-danger-bg: #451a1a;
+    --color-danger-border: #7f1d1d;
     --color-muted: #777;
     --color-border: #2a2a2a;
     --color-surface: #1a1a1a;
@@ -24,6 +36,10 @@
         --color-text: #ededed;
         --color-border: #2a2a2a;
         --color-surface: #1a1a1a;
+        --color-danger: #f87171;
+        --color-danger-hover: #fca5a5;
+        --color-danger-bg: #451a1a;
+        --color-danger-border: #7f1d1d;
     }
 }
 
@@ -111,4 +127,134 @@ pre {
     background-color: var(--color-surface);
     padding: 1px;
     display: inline-block;
+}
+
+.button-primary {
+    padding: 8px 10px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    cursor: pointer;
+}
+
+.button-primary:hover {
+    background-color: var(--color-surface);
+}
+
+.button-error {
+    padding: 8px 10px;
+    border: 1px solid var(--color-danger-border);
+    background-color: var(--color-danger-bg);
+    color: var(--color-danger);
+    cursor: pointer;
+}
+
+.button-error:hover {
+    background-color: var(--color-danger-border);
+}
+
+.button-secondary {
+    padding: 8px 10px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    cursor: pointer;
+}
+
+.button-secondary:hover {
+    background-color: var(--color-subtext);
+}
+
+.button-link {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+}
+
+.button-link:hover {
+    color: var(--color-subtext);
+}
+
+.button-link:visited {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+}
+
+.button-text {
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+}
+
+.button-text:hover {
+    color: var(--color-subtext);
+}
+
+.button-text:visited {
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+}
+
+.form {
+    padding: 15px;
+    border: 1px solid var(--color-border);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-label {
+    color: var(--color-muted);
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.form-input {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: 6px 4px;
+    color: var(--color-text);
+}
+
+.form-error {
+    color: var(--color-danger);
+}
+
+.form-hint {
+    color: var(--color-text);
+    background: var(--color-surface);
+    margin: 8px 0;
+    padding: 4px;
+    border: 1px solid var(--color-border);
+}
+
+.form-input:focus {
+    outline: none;
+}
+
+.form-textarea {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: 6px 4px;
+    color: var(--color-text);
+    width: 100%;
+}
+
+.form-textarea:focus {
+    outline: none;
 }
