@@ -2,7 +2,7 @@ name: Minify CSS & JS
 
 on:
   push:
-    branches: [main]
+    branches: [master]
     tags: ["v*"]
   workflow_dispatch:
 
@@ -23,15 +23,15 @@ jobs:
       - name: Minify CSS
         run: |
           mkdir -p dist
-          cleancss -o dist/mylib.min.css src/mylib.css
+          cleancss -o dist/minima.min.css src/minima.css
 
       - name: Minify JS
-        run: terser src/index.js -o dist/index.min.js --compress --mangle
+        run: terser src/minima.js -o dist/minima.min.js --compress --mangle
 
       - name: Commit minified files
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add dist/mylib.min.css dist/index.min.js
+          git add dist/minima.min.css dist/minima.min.js
           git diff --staged --quiet || git commit -m "chore: rebuild minified files [skip ci]"
           git push
