@@ -10,6 +10,8 @@ very minimal css libarary inspired by shadcn but usable with normal html and css
   - [x] inputs
   - [x] label
   - [x] form-group
+  - [ ] form-hints
+  - [ ] form-errors
   - [ ] textrea
   - [ ] date picker
   - [ ] custom select
@@ -22,4 +24,10 @@ very minimal css libarary inspired by shadcn but usable with normal html and css
 - [ ] dialogs, modals, popvers
 - [ ] toasts
 - [ ] tabs
+- [ ] tooltip
+- [ ] pagination
+- [ ] breadcrumbs
 - [ ] accordians
+- [ ] card
+- [ ] avatar
+- [ ] badge/tag
