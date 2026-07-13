@@ -21,13 +21,11 @@ very minimal css libarary inspired by shadcn but usable with normal html and css
   - [ ] switch
 - [x] tables
 - [x] alerts
-- [ ] dialogs
+- [x] dialogs
 - [x]  popvers
 - [x] toasts
 - [x] tabs
 - [x] tooltip
-- [ ] pagination
-- [ ] breadcrumbs
 - [x] accordians
 - [x] avatar
 - [x] badge/tag

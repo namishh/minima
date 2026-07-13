@@ -157,7 +157,54 @@ function initPopovers() {
   });
 }
 
+function initDialogs() {
+  document.addEventListener("click", (e) => {
+    const opener = e.target.closest("[data-dialog-open]");
+    if (opener) {
+      const overlay = document.getElementById(opener.dataset.dialogOpen);
+      if (overlay) openDialog(overlay);
+    }
+
+    const closer = e.target.closest("[data-dialog-close]");
+    if (closer) {
+      const overlay = closer.closest("[data-dialog-overlay]");
+      if (overlay) closeDialog(overlay);
+    }
+
+    if (e.target.hasAttribute("data-dialog-overlay")) {
+      closeDialog(e.target);
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    const openDialogs = document.querySelectorAll(
+      "[data-dialog-overlay]:not([hidden])",
+    );
+    const last = openDialogs[openDialogs.length - 1];
+    if (last) closeDialog(last);
+  });
+}
+
+function openDialog(overlay) {
+  overlay.hidden = false;
+  document.body.style.overflow = "hidden";
+  const focusable = overlay.querySelector(
+    "button, [href], input, select, textarea",
+  );
+  if (focusable) focusable.focus();
+
+  overlay.dispatchEvent(new CustomEvent("dialog:open", { bubbles: true }));
+}
+
+function closeDialog(overlay) {
+  overlay.hidden = true;
+  document.body.style.overflow = "";
+  overlay.dispatchEvent(new CustomEvent("dialog:close", { bubbles: true }));
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  initDialogs();
   initTabs();
   initPopovers();
   initTooltips();
