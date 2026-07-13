@@ -358,3 +358,93 @@ table th {
 .tooltip-bubble.is-visible {
     opacity: 1;
 }
+
+.accordion-item {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.accordion-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    background: var(--color-surface);
+    border: none;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    font-size: 12px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.accordion-icon {
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+}
+
+.accordion-item.is-open .accordion-icon {
+    transform: rotate(90deg);
+}
+
+.accordion-panel {
+    overflow: hidden;
+}
+
+.accordion-panel-inner {
+    padding-bottom: 1rem;
+    padding: 10px;
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.avatar-xl {
+    height: 64px;
+}
+
+.avatar-lg {
+    height: 48px;
+}
+
+.avatar-md {
+    height: 32px;
+}
+
+.avatar-sm {
+    height: 24px;
+}
+
+.avatar-mr {
+    border-radius: 6px;
+}
+
+.avatar-r {
+    border-radius: 100%;
+}
+
+.badge {
+    padding: 0px 5px;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.badge-primary {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    border: 1px solid var(--color-border);
+}
+
+.badge-secondary {
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+}
+
+.badge-error {
+    color: var(--color-danger);
+    background-color: var(--color-danger-bg);
+    border: 1px solid var(--color-danger-border);
+}

@@ -27,7 +27,7 @@ very minimal css libarary inspired by shadcn but usable with normal html and css
 - [x] tooltip
 - [ ] pagination
 - [ ] breadcrumbs
-- [ ] accordians
+- [x] accordians
 - [ ] card
-- [ ] avatar
-- [ ] badge/tag
+- [x] avatar
+- [x] badge/tag

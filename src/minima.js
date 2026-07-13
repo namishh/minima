@@ -54,7 +54,47 @@ function initTooltips() {
   });
 }
 
+function initAccordion() {
+  document.querySelectorAll("[data-accordion-trigger]").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const item = trigger.closest("[data-accordion-item]");
+      const panel = item.querySelector("[data-accordion-panel]");
+      const isOpen = item.classList.contains("is-open");
+
+      const accordion = item.closest("[data-accordion]");
+      if (accordion && accordion.hasAttribute("data-accordion-single")) {
+        accordion
+          .querySelectorAll("[data-accordion-item].is-open")
+          .forEach((openItem) => {
+            if (openItem !== item) closeAccordionItem(openItem);
+          });
+      }
+
+      isOpen ? closeAccordionItem(item) : openAccordionItem(item);
+    });
+  });
+}
+
+function openAccordionItem(item) {
+  const trigger = item.querySelector("[data-accordion-trigger]");
+  const panel = item.querySelector("[data-accordion-panel]");
+
+  item.classList.add("is-open");
+  trigger.setAttribute("aria-expanded", "true");
+  panel.hidden = false;
+}
+
+function closeAccordionItem(item) {
+  const trigger = item.querySelector("[data-accordion-trigger]");
+  const panel = item.querySelector("[data-accordion-panel]");
+
+  item.classList.remove("is-open");
+  trigger.setAttribute("aria-expanded", "false");
+  panel.hidden = true;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initTabs();
   initTooltips();
+  initAccordion();
 });
