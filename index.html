@@ -1,0 +1,1276 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>minima — documentation</title>
+    <link rel="stylesheet" href="/src/minima.css" />
+    <script defer src="/src/minima.js"></script>
+    <style>
+      body {
+        padding: 0;
+      }
+
+      .docs {
+        display: grid;
+        grid-template-columns: 220px minmax(0, 1fr);
+        min-height: 100vh;
+      }
+
+      .docs-sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+        padding: 24px 16px;
+        border-right: 1px solid var(--color-border);
+        background: var(--color-bg);
+      }
+
+      .docs-brand {
+        font-size: 18px;
+        margin-bottom: 4px;
+      }
+
+      .docs-tagline {
+        margin-bottom: 20px;
+      }
+
+      .docs-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .docs-nav a {
+        color: var(--color-muted);
+        text-decoration: none;
+        font-size: 12px;
+        padding: 4px 6px;
+      }
+
+      .docs-nav a:hover {
+        color: var(--color-text);
+        background: var(--color-surface);
+      }
+
+      .docs-nav-label {
+        font-size: 11px;
+        color: var(--color-muted);
+        margin: 14px 6px 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .docs-main {
+        max-width: 760px;
+        padding: 32px 40px 80px;
+      }
+
+      .docs-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+
+      .docs-section {
+        margin-bottom: 48px;
+        scroll-margin-top: 24px;
+      }
+
+      .docs-section > h2 {
+        margin-bottom: 6px;
+      }
+
+      .docs-section > .docs-desc {
+        margin-bottom: 16px;
+      }
+
+      .docs-preview {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        padding: 20px 0 8px;
+      }
+
+      .docs-preview-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        padding: 20px 0 8px;
+      }
+
+      .docs-preview-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .docs-code {
+        display: block;
+        width: 100%;
+        margin: 12px 0 0;
+        padding: 14px 16px;
+        overflow-x: auto;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        font-size: 12px;
+        line-height: 1.55;
+        white-space: pre;
+      }
+
+      .docs-code code {
+        font-family: inherit;
+        color: var(--color-subtext);
+      }
+
+      .docs-install {
+        margin-top: 12px;
+      }
+
+      .docs-output {
+        width: 100%;
+        margin-top: 4px;
+        padding: 8px 12px;
+        border: 1px dashed var(--color-border);
+        background: var(--color-bg);
+        font-size: 12px;
+        color: var(--color-muted);
+      }
+
+      .docs-output b {
+        color: var(--color-text);
+        font-weight: normal;
+      }
+
+      .docs-output code {
+        color: var(--color-subtext);
+      }
+
+      @media (max-width: 860px) {
+        .docs {
+          grid-template-columns: 1fr;
+        }
+
+        .docs-sidebar {
+          display: none;
+        }
+
+        .docs-main {
+          padding: 24px 20px 64px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toast-container toast-container-br" data-toast-container></div>
+
+    <div id="docs-dialog" class="dialog-overlay" data-dialog-overlay hidden>
+      <div class="dialog" role="dialog" aria-modal="true" data-dialog>
+        <div class="dialog-header">
+          <h2 class="dialog-title">Confirm action</h2>
+          <button class="dialog-close" data-dialog-close aria-label="Close">&times;</button>
+        </div>
+        <div class="dialog-body">
+          <p class="text">This dialog uses the minima dialog pattern with overlay, header, body, and footer.</p>
+        </div>
+        <div class="dialog-footer">
+          <button class="button-error" data-dialog-close>Cancel</button>
+          <button class="button-primary" data-dialog-close>Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="docs">
+      <aside class="docs-sidebar">
+        <div class="docs-brand">minima</div>
+        <p class="text-small text-muted docs-tagline">minimal css + js</p>
+
+        <nav class="docs-nav">
+          <div class="docs-nav-label">Start</div>
+          <a href="#getting-started">Getting started</a>
+          <a href="#theming">Theming</a>
+
+          <div class="docs-nav-label">Foundation</div>
+          <a href="#typography">Typography</a>
+          <a href="#blockquote">Blockquote</a>
+          <a href="#spacers">Spacers &amp; HR</a>
+
+          <div class="docs-nav-label">Components</div>
+          <a href="#buttons">Buttons</a>
+          <a href="#tooltip">Tooltip</a>
+          <a href="#forms">Forms</a>
+          <a href="#select">Select</a>
+          <a href="#datepicker">Datepicker</a>
+          <a href="#timepicker">Timepicker</a>
+          <a href="#radio">Radio</a>
+          <a href="#checkbox">Checkbox</a>
+          <a href="#table">Table</a>
+          <a href="#alerts">Alerts</a>
+          <a href="#avatar">Avatar</a>
+          <a href="#badge">Badge</a>
+          <a href="#tabs">Tabs</a>
+          <a href="#toast">Toast</a>
+          <a href="#popover">Popover</a>
+          <a href="#dialog">Dialog</a>
+          <a href="#accordion">Accordion</a>
+        </nav>
+      </aside>
+
+      <main class="docs-main">
+        <header class="docs-header">
+          <div>
+            <h1>Documentation</h1>
+            <p class="text-muted text-small">A minimal CSS library inspired by shadcn, usable with plain HTML.</p>
+          </div>
+          <button type="button" class="button-text" onclick="toggleTheme()">Toggle theme</button>
+        </header>
+
+        <section class="docs-section" id="getting-started">
+          <h2>Getting started</h2>
+          <p class="text-muted text-small docs-desc">Include the stylesheet and script, then use class names and data attributes.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview-stack">
+                <p class="text">Link these two files in your HTML:</p>
+                <pre class="docs-code docs-install"><code></code></pre>
+                <script type="text/plain" class="docs-src">
+<link rel="stylesheet" href="/src/minima.css" />
+<script defer src="/src/minima.js"><\/script>
+                </script>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <link rel="stylesheet" href="/src/minima.css" />
+    <script defer src="/src/minima.js"><\/script>
+  </head>
+  <body>
+    <button class="button-primary">Hello</button>
+  </body>
+</html>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="theming">
+          <h2>Theming</h2>
+          <p class="text-muted text-small docs-desc">Set <code>data-theme</code> on <code>&lt;html&gt;</code> to <code>light</code> or <code>dark</code>.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview">
+                <button type="button" class="button-secondary" onclick="toggleTheme()">Switch light / dark</button>
+                <span class="text-small text-muted">Current theme updates on <code>&lt;html&gt;</code>.</span>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<html data-theme="dark">
+<!-- or data-theme="light" -->
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
+  }
+<\/script>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="typography">
+          <h2>Typography</h2>
+          <p class="text-muted text-small docs-desc">Headings, body text, muted copy, and inline <code>pre</code>.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview-stack">
+                <h1>Heading 1</h1>
+                <h2>Heading 2</h2>
+                <h3>Heading 3</h3>
+                <h4>Heading 4</h4>
+                <h5>Heading 5</h5>
+                <h6>Heading 6</h6>
+                <p class="text">Body text with the <code>text</code> class.</p>
+                <p class="text text-small">Small body text with <code>text-small</code>.</p>
+                <p class="text-muted">Muted text with <code>text-muted</code>.</p>
+                <p class="text">Inline <pre>pre</pre> for short snippets.</p>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6</h6>
+
+<p class="text">Body text with the text class.</p>
+<p class="text text-small">Small body text.</p>
+<p class="text-muted">Muted text.</p>
+<p class="text">Inline <pre>pre</pre> for short snippets.</p>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="blockquote">
+          <h2>Blockquote</h2>
+          <p class="text-muted text-small docs-desc">Quoted content with a left border and surface background.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview-stack">
+                <div class="blockquote">
+                  <p class="text">Design is not just what it looks like and feels like. Design is how it works.</p>
+                  <p class="text-small text-muted">— Steve Jobs</p>
+                </div>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<div class="blockquote">
+  <p class="text">Design is not just what it looks like and feels like. Design is how it works.</p>
+  <p class="text-small text-muted">— Steve Jobs</p>
+</div>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="spacers">
+          <h2>Spacers &amp; HR</h2>
+          <p class="text-muted text-small docs-desc">Vertical and horizontal spacing helpers, plus a horizontal rule.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview-stack">
+                <p class="text">Above the spacer</p>
+                <div class="spacer-vertical"></div>
+                <p class="text">Below the spacer</p>
+                <hr />
+                <div class="docs-preview-row">
+                  <span class="text">Left</span>
+                  <span class="spacer-horizontal"></span>
+                  <span class="text">Right</span>
+                </div>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<p class="text">Above the spacer</p>
+<div class="spacer-vertical"></div>
+<p class="text">Below the spacer</p>
+
+<hr />
+
+<span class="text">Left</span>
+<span class="spacer-horizontal"></span>
+<span class="text">Right</span>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="buttons">
+          <h2>Buttons</h2>
+          <p class="text-muted text-small docs-desc">Primary, secondary, error, link, and text variants.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview">
+                <button class="button-primary">Primary</button>
+                <button class="button-secondary">Secondary</button>
+                <button class="button-error">Error</button>
+                <button class="button-link">Link</button>
+                <button class="button-text">Text</button>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<button class="button-primary">Primary</button>
+<button class="button-secondary">Secondary</button>
+<button class="button-error">Error</button>
+<button class="button-link">Link</button>
+<button class="button-text">Text</button>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="tooltip">
+          <h2>Tooltip</h2>
+          <p class="text-muted text-small docs-desc">Wrap a control and set <code>data-tooltip</code> for hover/focus text.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview">
+                <span class="tooltip-wrapper" data-tooltip="This is a tooltip">
+                  <button class="button-primary">Hover me</button>
+                </span>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<span class="tooltip-wrapper" data-tooltip="This is a tooltip">
+  <button class="button-primary">Hover me</button>
+</span>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="forms">
+          <h2>Forms</h2>
+          <p class="text-muted text-small docs-desc">Labels, inputs, errors, hints, and textareas.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview-stack">
+                <form class="form" onsubmit="event.preventDefault()">
+                  <div class="form-group">
+                    <label class="form-label" for="docs-name">Name</label>
+                    <p class="form-error text-small">This field is required.</p>
+                    <input class="form-input" type="text" id="docs-name" name="name" placeholder="Jane Doe" />
+                  </div>
+                  <div class="spacer-vertical"></div>
+                  <div class="form-hint text-small">Hints appear below the field group.</div>
+                  <textarea class="form-textarea" id="docs-bio" name="bio" placeholder="Short bio"></textarea>
+                  <div class="spacer-vertical"></div>
+                  <button type="submit" class="button-secondary">Submit</button>
+                </form>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<form class="form">
+  <div class="form-group">
+    <label class="form-label" for="name">Name</label>
+    <p class="form-error text-small">This field is required.</p>
+    <input class="form-input" type="text" id="name" name="name" />
+  </div>
+
+  <div class="form-hint text-small">Hints appear below the field group.</div>
+  <textarea class="form-textarea" name="bio"></textarea>
+
+  <button type="submit" class="button-secondary">Submit</button>
+</form>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="select">
+          <h2>Select</h2>
+          <p class="text-muted text-small docs-desc">Custom select with <code>data-select</code> attributes.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview">
+                <div class="select" data-select>
+                  <button class="select-trigger" type="button" data-select-trigger aria-haspopup="listbox" aria-expanded="false">
+                    <span class="select-value" data-select-value>Choose an option</span>
+                    <span class="select-arrow" aria-hidden="true"></span>
+                  </button>
+                  <ul class="select-options" role="listbox" data-select-options hidden>
+                    <li class="select-option" role="option" data-value="1">Option 1</li>
+                    <li class="select-option" role="option" data-value="2">Option 2</li>
+                    <li class="select-option is-disabled" role="option" data-value="3" aria-disabled="true">Option 3</li>
+                  </ul>
+                </div>
+                <div class="docs-output">Pick an option to see the <code>select:change</code> detail.</div>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<div class="select" data-select>
+  <button class="select-trigger" type="button" data-select-trigger aria-haspopup="listbox" aria-expanded="false">
+    <span class="select-value" data-select-value>Choose an option</span>
+    <span class="select-arrow" aria-hidden="true"></span>
+  </button>
+  <ul class="select-options" role="listbox" data-select-options hidden>
+    <li class="select-option" role="option" data-value="1">Option 1</li>
+    <li class="select-option" role="option" data-value="2">Option 2</li>
+    <li class="select-option is-disabled" role="option" data-value="3" aria-disabled="true">Option 3</li>
+  </ul>
+</div>
+
+<script>
+  const select = document.querySelector("[data-select]");
+
+  // fires whenever the user picks an option
+  select.addEventListener("select:change", (e) => {
+    console.log(e.detail.value); // "1"
+    console.log(e.detail.label); // "Option 1"
+  });
+
+  // the current value is also mirrored on the element
+  console.log(select.dataset.value);
+<\/script>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="datepicker">
+          <h2>Datepicker</h2>
+          <p class="text-muted text-small docs-desc">Calendar picker initialized via <code>data-datepicker</code>.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview">
+                <div class="datepicker" data-datepicker>
+                  <input class="datepicker-input" type="text" data-datepicker-input placeholder="Select date" readonly />
+                  <div class="datepicker-calendar" data-datepicker-calendar hidden>
+                    <div class="datepicker-header">
+                      <button class="datepicker-nav" data-datepicker-prev type="button">&lsaquo;</button>
+                      <span class="datepicker-title" data-datepicker-title></span>
+                      <button class="datepicker-nav" data-datepicker-next type="button">&rsaquo;</button>
+                    </div>
+                    <div class="datepicker-weekdays">
+                      <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                    </div>
+                    <div class="datepicker-days" data-datepicker-days></div>
+                  </div>
+                </div>
+                <div class="docs-output">Choose a date to see the <code>datepicker:change</code> detail.</div>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<div class="datepicker" data-datepicker>
+  <input class="datepicker-input" type="text" data-datepicker-input placeholder="Select date" readonly />
+  <div class="datepicker-calendar" data-datepicker-calendar hidden>
+    <div class="datepicker-header">
+      <button class="datepicker-nav" data-datepicker-prev type="button">&lsaquo;</button>
+      <span class="datepicker-title" data-datepicker-title></span>
+      <button class="datepicker-nav" data-datepicker-next type="button">&rsaquo;</button>
+    </div>
+    <div class="datepicker-weekdays">
+      <span>Su</span><span>Mo</span><span>Tu</span>
+      <span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+    </div>
+    <div class="datepicker-days" data-datepicker-days></div>
+  </div>
+</div>
+
+<script>
+  const datepicker = document.querySelector("[data-datepicker]");
+
+  // fires when a day is chosen; date is an ISO "YYYY-MM-DD" string
+  datepicker.addEventListener("datepicker:change", (e) => {
+    console.log(e.detail.date); // "2026-07-13"
+  });
+<\/script>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="timepicker">
+          <h2>Timepicker</h2>
+          <p class="text-muted text-small docs-desc">Hour, minute, and meridiem columns with <code>data-timepicker</code>.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview">
+                <div class="timepicker" data-timepicker>
+                  <input class="timepicker-input" type="text" data-timepicker-input placeholder="Select time" readonly />
+                  <div class="timepicker-panel" data-timepicker-panel hidden>
+                    <div class="timepicker-col" data-timepicker-col="hour">
+                      <div class="timepicker-item" data-value="01">01</div>
+                      <div class="timepicker-item is-selected" data-value="02">02</div>
+                      <div class="timepicker-item" data-value="03">03</div>
+                      <div class="timepicker-item" data-value="04">04</div>
+                      <div class="timepicker-item" data-value="05">05</div>
+                      <div class="timepicker-item" data-value="06">06</div>
+                      <div class="timepicker-item" data-value="07">07</div>
+                      <div class="timepicker-item" data-value="08">08</div>
+                      <div class="timepicker-item" data-value="09">09</div>
+                      <div class="timepicker-item" data-value="10">10</div>
+                      <div class="timepicker-item" data-value="11">11</div>
+                      <div class="timepicker-item" data-value="12">12</div>
+                    </div>
+                    <div class="timepicker-col" data-timepicker-col="minute">
+                      <div class="timepicker-item is-selected" data-value="00">00</div>
+                      <div class="timepicker-item" data-value="15">15</div>
+                      <div class="timepicker-item" data-value="30">30</div>
+                      <div class="timepicker-item" data-value="45">45</div>
+                    </div>
+                    <div class="timepicker-col" data-timepicker-col="meridiem">
+                      <div class="timepicker-item is-selected" data-value="AM">AM</div>
+                      <div class="timepicker-item" data-value="PM">PM</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="docs-output">Pick a time to see the <code>timepicker:change</code> detail.</div>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<div class="timepicker" data-timepicker>
+  <input class="timepicker-input" type="text" data-timepicker-input placeholder="Select time" readonly />
+  <div class="timepicker-panel" data-timepicker-panel hidden>
+    <div class="timepicker-col" data-timepicker-col="hour">
+      <div class="timepicker-item" data-value="01">01</div>
+      <div class="timepicker-item is-selected" data-value="02">02</div>
+      <div class="timepicker-item" data-value="03">03</div>
+      <div class="timepicker-item" data-value="04">04</div>
+      <div class="timepicker-item" data-value="05">05</div>
+      <div class="timepicker-item" data-value="06">06</div>
+      <div class="timepicker-item" data-value="07">07</div>
+      <div class="timepicker-item" data-value="08">08</div>
+      <div class="timepicker-item" data-value="09">09</div>
+      <div class="timepicker-item" data-value="10">10</div>
+      <div class="timepicker-item" data-value="11">11</div>
+      <div class="timepicker-item" data-value="12">12</div>
+    </div>
+    <div class="timepicker-col" data-timepicker-col="minute">
+      <div class="timepicker-item is-selected" data-value="00">00</div>
+      <div class="timepicker-item" data-value="15">15</div>
+      <div class="timepicker-item" data-value="30">30</div>
+      <div class="timepicker-item" data-value="45">45</div>
+    </div>
+    <div class="timepicker-col" data-timepicker-col="meridiem">
+      <div class="timepicker-item is-selected" data-value="AM">AM</div>
+      <div class="timepicker-item" data-value="PM">PM</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const timepicker = document.querySelector("[data-timepicker]");
+
+  // fires when hour, minute, or meridiem changes
+  timepicker.addEventListener("timepicker:change", (e) => {
+    console.log(e.detail.value); // "02:00 AM"
+    console.log(e.detail.parts); // ["02", "00", "AM"]
+  });
+<\/script>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="radio">
+          <h2>Radio</h2>
+          <p class="text-muted text-small docs-desc">Custom radio controls with a visually hidden native input.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview">
+                <label class="radio">
+                  <input type="radio" name="docs-plan" class="radio-input sr-only-input" value="basic" checked />
+                  <span class="radio-control" aria-hidden="true"></span>
+                  Basic
+                </label>
+                <label class="radio">
+                  <input type="radio" name="docs-plan" class="radio-input sr-only-input" value="pro" />
+                  <span class="radio-control" aria-hidden="true"></span>
+                  Pro
+                </label>
+                <div class="docs-output">Selected plan: <b>basic</b></div>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<label class="radio">
+  <input type="radio" name="plan" class="radio-input sr-only-input" value="basic" checked />
+  <span class="radio-control" aria-hidden="true"></span>
+  Basic
+</label>
+<label class="radio">
+  <input type="radio" name="plan" class="radio-input sr-only-input" value="pro" />
+  <span class="radio-control" aria-hidden="true"></span>
+  Pro
+</label>
+
+<script>
+  // radios are native inputs, so listen for the standard change event
+  document.querySelectorAll('input[name="plan"]').forEach((radio) => {
+    radio.addEventListener("change", (e) => {
+      console.log(e.target.value); // "basic" | "pro"
+    });
+  });
+<\/script>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="checkbox">
+          <h2>Checkbox</h2>
+          <p class="text-muted text-small docs-desc">Custom checkbox with an SVG check mark.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview">
+                <label class="checkbox">
+                  <input type="checkbox" class="checkbox-input sr-only-input" />
+                  <span class="checkbox-control" aria-hidden="true">
+                    <svg class="checkbox-check" viewBox="0 0 16 16" width="10" height="10">
+                      <path d="M2 8.5 L6 12.5 L14 3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  Accept terms
+                </label>
+                <div class="docs-output">Accepted: <b>false</b></div>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<label class="checkbox">
+  <input type="checkbox" class="checkbox-input sr-only-input" />
+  <span class="checkbox-control" aria-hidden="true">
+    <svg class="checkbox-check" viewBox="0 0 16 16" width="10" height="10">
+      <path d="M2 8.5 L6 12.5 L14 3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </span>
+  Accept terms
+</label>
+
+<script>
+  const checkbox = document.querySelector(".checkbox-input");
+
+  // native change event exposes the checked state
+  checkbox.addEventListener("change", (e) => {
+    console.log(e.target.checked); // true | false
+  });
+<\/script>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="table">
+          <h2>Table</h2>
+          <p class="text-muted text-small docs-desc">Native tables styled by minima defaults.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview-stack">
+                <table>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>namishh</td>
+                    <td>hey@namishh.com</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>rohith</td>
+                    <td>hey@rohith.net</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>mridul</td>
+                    <td>hey@mridul.sh</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<table>
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Email</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>namishh</td>
+    <td>hey@namishh.com</td>
+  </tr>
+</table>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="alerts">
+          <h2>Alerts</h2>
+          <p class="text-muted text-small docs-desc">Primary, secondary, and error alert banners.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview-stack">
+                <div class="alert-primary">This is a standard alert</div>
+                <div class="alert-secondary">This is a secondary alert</div>
+                <div class="alert-error">Something went wrong</div>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<div class="alert-primary">This is a standard alert</div>
+<div class="alert-secondary">This is a secondary alert</div>
+<div class="alert-error">Something went wrong</div>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="avatar">
+          <h2>Avatar</h2>
+          <p class="text-muted text-small docs-desc">Sizes <code>xl</code>, <code>lg</code>, <code>md</code>, <code>sm</code>, plus radius helpers.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview">
+                <img src="https://sakura.rex.wf/floral/minima?size=64" alt="" class="avatar avatar-xl" />
+                <img src="https://sakura.rex.wf/grid/minima?size=64" alt="" class="avatar avatar-lg" />
+                <img src="https://sakura.rex.wf/spectra/minima?size=64" alt="" class="avatar avatar-md" />
+                <img src="https://sakura.rex.wf/static/minima?size=64" alt="" class="avatar avatar-sm avatar-mr" />
+                <img src="https://sakura.rex.wf/linear/minima?size=64" alt="" class="avatar avatar-r avatar-md" />
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<img src="avatar.png" alt="" class="avatar avatar-xl" />
+<img src="avatar.png" alt="" class="avatar avatar-lg" />
+<img src="avatar.png" alt="" class="avatar avatar-md" />
+<img src="avatar.png" alt="" class="avatar avatar-sm avatar-mr" />
+<img src="avatar.png" alt="" class="avatar avatar-r avatar-md" />
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="badge">
+          <h2>Badge</h2>
+          <p class="text-muted text-small docs-desc">Small status labels in primary, secondary, and error.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview">
+                <div class="badge badge-primary">primary</div>
+                <div class="badge badge-secondary">secondary</div>
+                <div class="badge badge-error">error</div>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<div class="badge badge-primary">primary</div>
+<div class="badge badge-secondary">secondary</div>
+<div class="badge badge-error">error</div>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="tabs">
+          <h2>Tabs</h2>
+          <p class="text-muted text-small docs-desc">Use <code>data-tabs</code>, <code>data-tabs-trigger</code>, and <code>data-tabs-panel</code>. This page uses the same pattern for Preview / Code.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview-stack">
+                <div class="tabs" data-tabs>
+                  <div class="tabs-list" role="tablist">
+                    <button class="tabs-trigger is-active" data-tabs-trigger data-tab="one" role="tab" aria-selected="true">Tab One</button>
+                    <button class="tabs-trigger" data-tabs-trigger data-tab="two" role="tab" aria-selected="false">Tab Two</button>
+                  </div>
+                  <div class="tabs-panel is-active text-small" data-tabs-panel data-tab="one" role="tabpanel">
+                    Content for the first tab panel.
+                  </div>
+                  <div class="tabs-panel text-small" data-tabs-panel data-tab="two" role="tabpanel" hidden>
+                    Content for the second tab panel.
+                  </div>
+                </div>
+                <div class="docs-output" data-demo-tabs-output>Active tab: <b>one</b></div>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<div class="tabs" data-tabs>
+  <div class="tabs-list" role="tablist">
+    <button class="tabs-trigger is-active" data-tabs-trigger data-tab="one" role="tab" aria-selected="true">Tab One</button>
+    <button class="tabs-trigger" data-tabs-trigger data-tab="two" role="tab" aria-selected="false">Tab Two</button>
+  </div>
+  <div class="tabs-panel is-active" data-tabs-panel data-tab="one" role="tabpanel">Panel one</div>
+  <div class="tabs-panel" data-tabs-panel data-tab="two" role="tabpanel" hidden>Panel two</div>
+</div>
+
+<script>
+  const tabs = document.querySelector("[data-tabs]");
+
+  // fires when the active tab changes
+  tabs.addEventListener("tabs:change", (e) => {
+    console.log(e.detail.tab); // "two"
+  });
+<\/script>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="toast">
+          <h2>Toast</h2>
+          <p class="text-muted text-small docs-desc">Add a toast container, then call <code>showToast(message, options)</code>.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview">
+                <button type="button" class="button-primary" onclick="showToast('Successful toast', { type: 'success' })">Success toast</button>
+                <button type="button" class="button-error" onclick="showToast('Error toast', { type: 'error' })">Error toast</button>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<div class="toast-container toast-container-br" data-toast-container></div>
+
+<button class="button-primary" onclick="showToast('Successful toast', { type: 'success' })">
+  Success toast
+</button>
+<button class="button-error" onclick="showToast('Error toast', { type: 'error' })">
+  Error toast
+</button>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="popover">
+          <h2>Popover</h2>
+          <p class="text-muted text-small docs-desc">Trigger and panel pair with <code>data-popover</code>.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview">
+                <div class="popover-wrapper" data-popover>
+                  <button class="button-primary" data-popover-trigger type="button">Open popover</button>
+                  <div class="popover-panel" data-popover-panel hidden>
+                    <div class="popover-content">
+                      <label class="form-label" for="docs-popover-name">Enter your name</label>
+                      <input class="form-input" id="docs-popover-name" type="text" style="width: 240px" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<div class="popover-wrapper" data-popover>
+  <button class="button-primary" data-popover-trigger>Open popover</button>
+  <div class="popover-panel" data-popover-panel hidden>
+    <div class="popover-content">
+      <label class="form-label" for="name">Enter your name</label>
+      <input class="form-input" id="name" type="text" />
+    </div>
+  </div>
+</div>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="dialog">
+          <h2>Dialog</h2>
+          <p class="text-muted text-small docs-desc">Open with <code>data-dialog-open="id"</code> matching the overlay id.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview">
+                <button type="button" data-dialog-open="docs-dialog" class="button-secondary">Open modal</button>
+                <div class="docs-output">Dialog events will appear here.</div>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<div id="my-dialog" class="dialog-overlay" data-dialog-overlay hidden>
+  <div class="dialog" role="dialog" aria-modal="true" data-dialog>
+    <div class="dialog-header">
+      <h2 class="dialog-title">Confirm action</h2>
+      <button class="dialog-close" data-dialog-close aria-label="Close">&times;</button>
+    </div>
+    <div class="dialog-body">Dialog content</div>
+    <div class="dialog-footer">
+      <button class="button-error" data-dialog-close>Cancel</button>
+      <button class="button-primary" data-dialog-close>Confirm</button>
+    </div>
+  </div>
+</div>
+
+<button data-dialog-open="my-dialog" class="button-secondary">Open modal</button>
+
+<script>
+  const dialog = document.getElementById("my-dialog");
+
+  // both events bubble from the overlay element
+  dialog.addEventListener("dialog:open", () => console.log("opened"));
+  dialog.addEventListener("dialog:close", () => console.log("closed"));
+<\/script>
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="accordion">
+          <h2>Accordion</h2>
+          <p class="text-muted text-small docs-desc">Expandable items with <code>data-accordion</code> triggers and panels.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs-list" role="tablist">
+              <button class="tabs-trigger is-active" data-tabs-trigger data-tab="preview" role="tab" aria-selected="true">Preview</button>
+              <button class="tabs-trigger" data-tabs-trigger data-tab="code" role="tab" aria-selected="false">Code</button>
+            </div>
+            <div class="tabs-panel is-active" data-tabs-panel data-tab="preview" role="tabpanel">
+              <div class="docs-preview-stack">
+                <div class="accordion" data-accordion>
+                  <div class="accordion-item" data-accordion-item>
+                    <button class="accordion-trigger" data-accordion-trigger aria-expanded="false" type="button">
+                      What is minima?
+                      <span class="accordion-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 256 256">
+                          <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path>
+                        </svg>
+                      </span>
+                    </button>
+                    <div class="accordion-panel" data-accordion-panel hidden>
+                      <div class="accordion-panel-inner">A minimal CSS library inspired by shadcn, usable with normal HTML and CSS.</div>
+                    </div>
+                  </div>
+                  <div class="accordion-item" data-accordion-item>
+                    <button class="accordion-trigger" data-accordion-trigger aria-expanded="false" type="button">
+                      Does it need a build step?
+                      <span class="accordion-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 256 256">
+                          <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path>
+                        </svg>
+                      </span>
+                    </button>
+                    <div class="accordion-panel" data-accordion-panel hidden>
+                      <div class="accordion-panel-inner">No. Link the CSS and JS files and start using the classes and data attributes.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tabs-panel" data-tabs-panel data-tab="code" role="tabpanel" hidden>
+              <pre class="docs-code"><code></code></pre>
+              <script type="text/plain" class="docs-src">
+<div class="accordion" data-accordion>
+  <div class="accordion-item" data-accordion-item>
+    <button class="accordion-trigger" data-accordion-trigger aria-expanded="false">
+      Question
+      <span class="accordion-icon" aria-hidden="true">
+        <!-- chevron svg -->
+      </span>
+    </button>
+    <div class="accordion-panel" data-accordion-panel hidden>
+      <div class="accordion-panel-inner">Answer content</div>
+    </div>
+  </div>
+</div>
+              </script>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      function toggleTheme() {
+        const html = document.documentElement;
+        html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
+      }
+
+      (function renderDocsCode() {
+        document.querySelectorAll("script.docs-src").forEach((src) => {
+          const pre = src.previousElementSibling;
+          if (!pre || !pre.classList.contains("docs-code")) return;
+          const code = pre.querySelector("code");
+          if (!code) return;
+
+          let raw = src.textContent.replace(/\r/g, "");
+          raw = raw.replace(/<\\\/(script)>/gi, "</$1>");
+
+          const lines = raw.replace(/^\n+/, "").replace(/\s+$/, "").split("\n");
+          const indents = lines
+            .filter((line) => line.trim().length)
+            .map((line) => line.match(/^ */)[0].length);
+          const min = indents.length ? Math.min(...indents) : 0;
+
+          code.textContent = lines.map((line) => line.slice(min)).join("\n");
+        });
+      })();
+
+      (function wireLiveExamples() {
+        const escapeHtml = (value) =>
+          String(value).replace(
+            /[&<>"]/g,
+            (ch) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+              })[ch],
+          );
+
+        const setOutput = (fromEl, html) => {
+          const section = fromEl.closest(".docs-section");
+          const out = section && section.querySelector(".docs-output");
+          if (out) out.innerHTML = html;
+        };
+
+        document.querySelectorAll("[data-select]").forEach((el) => {
+          el.addEventListener("select:change", (e) => {
+            setOutput(
+              el,
+              `value: <b>${escapeHtml(e.detail.value)}</b> &nbsp; label: <b>${escapeHtml(e.detail.label)}</b>`,
+            );
+          });
+        });
+
+        document.querySelectorAll("[data-datepicker]").forEach((el) => {
+          el.addEventListener("datepicker:change", (e) => {
+            setOutput(el, `date: <b>${escapeHtml(e.detail.date)}</b>`);
+          });
+        });
+
+        document.querySelectorAll("[data-timepicker]").forEach((el) => {
+          el.addEventListener("timepicker:change", (e) => {
+            setOutput(
+              el,
+              `value: <b>${escapeHtml(e.detail.value)}</b> &nbsp; parts: <b>[${e.detail.parts.map(escapeHtml).join(", ")}]</b>`,
+            );
+          });
+        });
+
+        document.querySelectorAll('input[name="docs-plan"]').forEach((radio) => {
+          radio.addEventListener("change", (e) => {
+            setOutput(radio, `Selected plan: <b>${escapeHtml(e.target.value)}</b>`);
+          });
+        });
+
+        document.querySelectorAll(".checkbox-input").forEach((cb) => {
+          cb.addEventListener("change", (e) => {
+            setOutput(cb, `Accepted: <b>${e.target.checked}</b>`);
+          });
+        });
+
+        const demoTabs = document.querySelector(
+          "#tabs .docs-preview-stack [data-tabs]",
+        );
+        if (demoTabs) {
+          demoTabs.addEventListener("tabs:change", (e) => {
+            setOutput(demoTabs, `Active tab: <b>${escapeHtml(e.detail.tab)}</b>`);
+          });
+        }
+
+        const docsDialog = document.getElementById("docs-dialog");
+        const dialogOut = document.querySelector("#dialog .docs-output");
+        if (docsDialog && dialogOut) {
+          const stamp = () => new Date().toLocaleTimeString();
+          docsDialog.addEventListener("dialog:open", () => {
+            dialogOut.innerHTML = `<b>dialog:open</b> fired at ${stamp()}`;
+          });
+          docsDialog.addEventListener("dialog:close", () => {
+            dialogOut.innerHTML = `<b>dialog:close</b> fired at ${stamp()}`;
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

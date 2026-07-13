@@ -1,7 +1,9 @@
 const initTabs = () => {
   document.querySelectorAll("[data-tabs]").forEach((tabs) => {
-    const triggers = tabs.querySelectorAll("[data-tabs-trigger]");
-    const panels = tabs.querySelectorAll("[data-tabs-panel]");
+    const triggers = tabs.querySelectorAll(
+      ":scope > .tabs-list > [data-tabs-trigger]",
+    );
+    const panels = tabs.querySelectorAll(":scope > [data-tabs-panel]");
 
     triggers.forEach((trigger) => {
       trigger.addEventListener("click", () => {
