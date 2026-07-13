@@ -6,19 +6,19 @@ very minimal css libarary inspired by shadcn but usable with normal html and css
 - [x] typography
 - [x] hr, spacers, blockquotes
 - [x] buttons
-- [ ] forms
+- [x] forms
   - [x] inputs
   - [x] label
   - [x] form-group
   - [x] form-hints
   - [x] form-errors
   - [x] textrea
-  - [ ] date picker
-  - [ ] custom select
-  - [ ] time picker
-  - [ ] checkbox
-  - [ ] radio
-  - [ ] switch
+  - [x] date picker
+  - [x] custom select
+  - [x] time picker
+  - [x] checkbox
+  - [x] radio
+  - [x] switch
 - [x] tables
 - [x] alerts
 - [x] dialogs
