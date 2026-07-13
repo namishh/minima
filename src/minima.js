@@ -93,8 +93,73 @@ function closeAccordionItem(item) {
   panel.hidden = true;
 }
 
+function showToast(message, { type = "default", duration = 3500 } = {}) {
+  const container = document.querySelector("[data-toast-container]");
+  if (!container) {
+    console.warn("No [data-toast-container] found in the DOM.");
+    return;
+  }
+
+  const toast = document.createElement("div");
+  toast.className = `toast${type !== "default" ? ` toast-${type}` : ""}`;
+  toast.innerHTML = `
+    <span class="toast-message"></span>
+    <button class="toast-close" aria-label="Close">&times;</button>
+  `;
+  toast.querySelector(".toast-message").textContent = message;
+  container.appendChild(toast);
+
+  function remove() {
+    toast.remove();
+  }
+
+  toast.querySelector(".toast-close").addEventListener("click", remove);
+
+  if (duration > 0) {
+    setTimeout(remove, duration);
+  }
+
+  return toast;
+}
+
+function initPopovers() {
+  document.addEventListener("click", (e) => {
+    const trigger = e.target.closest("[data-popover-trigger]");
+    const openPopovers = document.querySelectorAll(
+      "[data-popover-panel]:not([hidden])",
+    );
+
+    if (trigger) {
+      const wrapper = trigger.closest("[data-popover]");
+      const panel = wrapper.querySelector("[data-popover-panel]");
+      const isOpen = !panel.hidden;
+
+      openPopovers.forEach((p) => {
+        if (p !== panel) p.hidden = true;
+      });
+      panel.hidden = isOpen;
+      return;
+    }
+
+    openPopovers.forEach((panel) => {
+      const wrapper = panel.closest("[data-popover]");
+      if (!wrapper.contains(e.target)) panel.hidden = true;
+    });
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    document
+      .querySelectorAll("[data-popover-panel]:not([hidden])")
+      .forEach((p) => {
+        p.hidden = true;
+      });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initTabs();
+  initPopovers();
   initTooltips();
   initAccordion();
 });
