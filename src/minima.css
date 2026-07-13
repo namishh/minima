@@ -390,7 +390,7 @@ table th {
     border: 1px solid var(--color-border);
     min-width: 0;
     max-width: 100%;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .tabs-list {
@@ -422,7 +422,7 @@ table th {
     padding: 0.625rem;
     min-width: 0;
     max-width: 100%;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .tooltip-wrapper {
@@ -619,7 +619,7 @@ table th {
     position: absolute;
     top: calc(100% + 0.5rem);
     left: 0;
-    z-index: 50;
+    z-index: 50000;
     min-width: 13.75rem;
     background: var(--color-bg);
     border: 1px solid var(--color-border);
