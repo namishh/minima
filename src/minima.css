@@ -267,6 +267,10 @@ pre {
     cursor: pointer;
 }
 
+.button-link:visited:hover {
+    color: var(--color-subtext);
+}
+
 .button-text {
     text-decoration: none;
     background: transparent;
@@ -286,6 +290,10 @@ pre {
     border: none;
     color: var(--color-text);
     cursor: pointer;
+}
+
+.button-text:visited:hover {
+    color: var(--color-subtext);
 }
 
 .form {
